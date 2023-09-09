@@ -27,6 +27,7 @@
     "postcss": "8.4.25",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.46.1",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.10.1",
     "react-router-dom": "^6.14.2",
@@ -35,9 +36,11 @@
     "tailwindcss": "3.3.2",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.1.6",
+    "uniqid": "^5.4.0",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
+    "@types/uniqid": "^5.3.2",
     "supabase": "^1.88.0"
   }
 }
