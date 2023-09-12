@@ -40,7 +40,7 @@ const UploadModal = () => {
       const imageFile = values.image?.[0];
       const songFile = values.song?.[0];
 
-      console.log("Values", values, "/n", "image", values.image);
+      // console.log("Values", values, "/n", "image", values.image);
 
       if (!imageFile || !songFile || !user) {
         toast.error("Missing Fields");
@@ -55,6 +55,7 @@ const UploadModal = () => {
           cacheControl: "3600",
           upsert: false,
         });
+
       if (songError) {
         setIsLoading(false);
         return toast.error("Failed song upload.");
