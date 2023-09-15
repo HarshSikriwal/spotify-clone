@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { FaPlay } from "react-icons/fa";
 
 interface ListItemProps {
@@ -15,6 +16,9 @@ const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
   const onClick = () => {
     router.push(href);
   };
+  // useEffect(() => {
+  //   console.log("rendered 2");
+  // }, []);
   return (
     <button
       onClick={onClick}
