@@ -54,21 +54,23 @@ const CommentModal = () => {
       isOpen={isOpen}
       onChange={onChange}
     >
-      <div className="flex flex-col gap-4 h-[400px] overflow-auto">
+      <div className="flex flex-col gap-2">
         <AddComment fetchComments={fetchComments} loggedIn={!!user.user} />
-        {comments?.map((comment_data) => (
-          <div className="flex flex-col" key={comment_data.id}>
-            <div className="flex justify-between">
-              <p className="text-md text-gray-300">
-                {getUserName(comment_data.user_email)}
-              </p>
-              <p className="text-sm text-gray-500">
-                {formatDate(comment_data.created_at)}
-              </p>
+        <div className="flex flex-col gap-4 h-[350px] overflow-auto custom-scrollbar pr-2">
+          {comments?.map((comment_data) => (
+            <div className="flex flex-col" key={comment_data.id}>
+              <div className="flex justify-between">
+                <p className="text-md text-gray-300">
+                  {getUserName(comment_data.user_email)}
+                </p>
+                <p className="text-sm text-gray-500">
+                  {formatDate(comment_data.created_at)}
+                </p>
+              </div>
+              <p className="text-lg">{comment_data.content}</p>
             </div>
-            <p className="text-lg">{comment_data.content}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </Modal>
   );

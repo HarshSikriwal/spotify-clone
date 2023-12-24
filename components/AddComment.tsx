@@ -25,7 +25,7 @@ const AddComment = ({
   const supabaseClient = useSupabaseClient();
   const router = useRouter();
   const handleSubmit = async () => {
-    if (user) {
+    if (user && value !== "") {
       try {
         setIsLoading(true);
         const { error: supabaseError } = await supabaseClient
