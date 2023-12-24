@@ -15,7 +15,6 @@ interface LibraryProps {
 }
 
 const Library: React.FC<LibraryProps> = ({ songs }) => {
-  const subscribeModal = useSubscribeModal();
   const authModal = useAuthModel();
   const uploadModal = useUploadModal();
   const { user, subscription } = useUser();
@@ -26,9 +25,7 @@ const Library: React.FC<LibraryProps> = ({ songs }) => {
     if (!user) {
       return authModal.onOpen();
     }
-    if (!subscription) {
-      return subscribeModal.onOpen();
-    }
+
     return uploadModal.onOpen();
   };
   return (
