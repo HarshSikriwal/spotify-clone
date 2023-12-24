@@ -56,7 +56,7 @@ const CommentModal = () => {
     >
       <div className="flex flex-col gap-2">
         <AddComment fetchComments={fetchComments} loggedIn={!!user.user} />
-        <div className="flex flex-col gap-4 h-[350px] overflow-auto custom-scrollbar pr-2">
+        <div className="flex flex-col gap-4 h-full lg:h-[350px] overflow-auto custom-scrollbar pr-2">
           {comments?.map((comment_data) => (
             <div className="flex flex-col" key={comment_data.id}>
               <div className="flex justify-between">

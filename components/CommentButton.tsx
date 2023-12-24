@@ -8,7 +8,7 @@ const CommentButton = ({ songId }: { songId: string }) => {
     return commentModal.onOpen();
   };
   return (
-    <button onClick={handleComments}>
+    <button onClick={handleComments} className="z-40">
       <MdOutlineInsertComment className="text-2xl" />
     </button>
   );

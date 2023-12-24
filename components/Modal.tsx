@@ -28,7 +28,7 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <Dialog open={isOpen} defaultOpen={isOpen} onOpenChange={onChange}>
       <DialogContent
-        className="fixed drop-shadow-md border border-neutral-700 top-[50%] 
+        className="fixed drop-shadow-md border border-neutral-700 top-[50%] flex flex-col gap-3
         left-[50%] max-h-full h-full md:h-auto md:max-h-[85vh] w-full md:w-[90vw] md:max-w-[450px] 
         translate-x-[-50%] translate-y-[-50%] rounded-md bg-neutral-800 p-[25px] focus:outline-none"
       >
@@ -40,7 +40,7 @@ const Modal: React.FC<ModalProps> = ({
             {description}
           </DialogDescription>
         </DialogHeader>
-        <div>{children}</div>
+        <div className="">{children}</div>
       </DialogContent>
     </Dialog>
   );
