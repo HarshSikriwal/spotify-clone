@@ -9,6 +9,14 @@ export interface Song {
   image_path: string;
 }
 
+export interface Comment {
+  id: string;
+  user_id: string;
+  song_id: string;
+  content: string | null;
+  user_email: string;
+  created_at: string;
+}
 export interface Product {
   id: string;
   active?: boolean;

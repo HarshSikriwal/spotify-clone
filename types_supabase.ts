@@ -15,6 +15,7 @@ export interface Database {
           created_at: string
           id: number
           song_id: number | null
+          user_email: string
           user_id: string | null
         }
         Insert: {
@@ -22,6 +23,7 @@ export interface Database {
           created_at?: string
           id?: number
           song_id?: number | null
+          user_email: string
           user_id?: string | null
         }
         Update: {
@@ -29,6 +31,7 @@ export interface Database {
           created_at?: string
           id?: number
           song_id?: number | null
+          user_email?: string
           user_id?: string | null
         }
         Relationships: [
