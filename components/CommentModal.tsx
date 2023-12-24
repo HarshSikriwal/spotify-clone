@@ -4,11 +4,14 @@ import useCommentModal from "@/hooks/useCommentModal";
 import usePlayer from "@/hooks/usePlayer";
 import useGetSongById from "@/hooks/useGetSongById";
 import useGetCommentsById from "@/hooks/useGetCommentsById";
+import AddComment from "./AddComment";
+import { useUser } from "@/hooks/useUser";
 
 const CommentModal = () => {
   const player = usePlayer();
+  const user = useUser();
   const { song } = useGetSongById(player.activeId);
-  const { comments } = useGetCommentsById(player.activeId);
+  const { comments, fetchComments } = useGetCommentsById(player.activeId);
   const { onClose, isOpen } = useCommentModal();
   const onChange = (open: boolean) => {
     if (!open) {
@@ -52,6 +55,7 @@ const CommentModal = () => {
       onChange={onChange}
     >
       <div className="flex flex-col gap-4 h-[400px] overflow-auto">
+        <AddComment fetchComments={fetchComments} loggedIn={!!user.user} />
         {comments?.map((comment_data) => (
           <div className="flex flex-col" key={comment_data.id}>
             <div className="flex justify-between">

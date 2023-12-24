@@ -7,33 +7,29 @@ const useGetCommentsById = (id?: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const [comments, setComments] = useState<Comment[] | null>(null);
   const { supabaseClient } = useSessionContext();
+  const fetchComments = async () => {
+    const { data, error } = await supabaseClient
+      .from("comments")
+      .select("*")
+      .eq("song_id", id)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      setIsLoading(false);
+      return toast.error(error.message);
+    }
+    setComments(data);
+    setIsLoading(false);
+    console.log(comments);
+  };
   useEffect(() => {
     if (!id) {
       return;
     }
-    const fetchComments = async () => {
-      const { data, error } = await supabaseClient
-        .from("comments")
-        .select("*")
-        .eq("song_id", id);
 
-      if (error) {
-        setIsLoading(false);
-        return toast.error(error.message);
-      }
-      setComments(data);
-      setIsLoading(false);
-      console.log(comments);
-    };
     fetchComments();
   }, [id, supabaseClient]);
-  return useMemo(
-    () => ({
-      isLoading,
-      comments,
-    }),
-    [isLoading, comments]
-  );
+  return { isLoading, comments, fetchComments };
 };
 
 export default useGetCommentsById;
