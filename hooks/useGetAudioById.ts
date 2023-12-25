@@ -2,12 +2,18 @@ import { Article, Song } from "@/types";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useState, useEffect, useMemo } from "react";
 import toast from "react-hot-toast";
+import useSongsAndArticles from "./useSongsAndArticles";
 
 const useGetAudioById = (type: "song" | "article", id?: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const [audio, setAudio] = useState<Song | Article | undefined>(undefined);
+  const songsAndArticles = useSongsAndArticles();
+
   const { supabaseClient } = useSessionContext();
-  console.log("audioById", type);
+  console.log("audioById", id);
+  console.log("songs", songsAndArticles.songs);
+  console.log("articles", songsAndArticles.articles);
+
   useEffect(() => {
     if (!id) {
       return;
@@ -44,14 +50,16 @@ const useGetAudioById = (type: "song" | "article", id?: string) => {
       setAudio(data as Article);
       setIsLoading(false);
     };
-
-    if (type === "song") {
+    console.log(type);
+    if (songsAndArticles.songs.find((s) => s.id === id)) {
+      console.log("fetching song");
       fetchSong();
-    }
-    if (type === "article") {
+    } else {
+      console.log("fetching article");
+
       fetchArticle();
     }
-  }, [id, supabaseClient, type]);
+  }, [id, supabaseClient]);
 
   return { isLoading, audio };
   // return useMemo(

@@ -2,7 +2,9 @@
 
 import SongItem from "@/components/SongItem";
 import useOnPlay from "@/hooks/useOnPlay";
+import useSongsAndArticles from "@/hooks/useSongsAndArticles";
 import { Article, Song } from "@/types";
+import { useEffect } from "react";
 
 interface PageContentProps {
   songs: Song[];
@@ -10,6 +12,12 @@ interface PageContentProps {
 
 const SongContent: React.FC<PageContentProps> = ({ songs }) => {
   const onPlay = useOnPlay(songs);
+  const songsAndArticles = useSongsAndArticles();
+  useEffect(() => {
+    if (songsAndArticles && songsAndArticles.setSongs) {
+      songsAndArticles.setSongs(songs);
+    }
+  }, []);
 
   if (songs.length === 0) {
     return <div className="mt-4 text-neutral-400">No songs available.</div>;

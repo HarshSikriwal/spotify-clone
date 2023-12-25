@@ -7,13 +7,13 @@ const useLoadSongUrl = (audio: Song | Article, type: "song" | "article") => {
   if (!audio) {
     return "";
   }
+  if ((audio as Article).audio_path) {
+    return (audio as Article).audio_path;
+  }
+
   const { data } = supabaseClient.storage
     .from("songs")
-    .getPublicUrl(
-      type === "song"
-        ? (audio as Song).song_path
-        : (audio as Article).audio_path
-    );
+    .getPublicUrl((audio as Song).song_path);
 
   return data.publicUrl;
 };

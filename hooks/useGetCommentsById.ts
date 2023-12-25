@@ -2,9 +2,12 @@ import { Comment } from "@/types";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
+import useSongsAndArticles from "./useSongsAndArticles";
 
 const useGetCommentsById = (id?: string) => {
   const [isLoading, setIsLoading] = useState(false);
+  const songsAndArticles = useSongsAndArticles();
+
   const [comments, setComments] = useState<Comment[] | null>(null);
   const { supabaseClient } = useSessionContext();
   const fetchComments = async () => {
@@ -25,7 +28,9 @@ const useGetCommentsById = (id?: string) => {
     if (!id) {
       return;
     }
-
+    if (!songsAndArticles.songs.find((s) => s.id === id)) {
+      return;
+    }
     fetchComments();
   }, [id, supabaseClient]);
   return { isLoading, comments, fetchComments };
