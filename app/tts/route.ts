@@ -11,7 +11,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const resp = await openai.audio.speech.create({
     model: "tts-1",
     voice: "echo",
-    input: text.slice(0, 500),
+    input: text.slice(0, 1000),
     response_format: "mp3",
   });
 
