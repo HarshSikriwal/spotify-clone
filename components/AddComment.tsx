@@ -6,7 +6,7 @@ import Input from "./Input";
 import Button from "./Button";
 import useAuthModal from "@/hooks/useAuthModal";
 import usePlayer from "@/hooks/usePlayer";
-import useGetSongById from "@/hooks/useGetSongById";
+import useGetAudioById from "@/hooks/useGetAudioById";
 import toast from "react-hot-toast";
 
 const AddComment = ({
@@ -17,7 +17,7 @@ const AddComment = ({
   loggedIn: boolean;
 }) => {
   const player = usePlayer();
-  const { song } = useGetSongById(player.activeId);
+  const { song } = useGetAudioById(player.activeId);
   const [isLoading, setIsLoading] = useState(false);
   const [value, setValue] = useState<string>("");
   const { user } = useUser();

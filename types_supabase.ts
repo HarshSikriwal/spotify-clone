@@ -12,26 +12,26 @@ export interface Database {
       articles: {
         Row: {
           audio_path: string | null
-          created_at: string | null
-          id: number
+          created_at: string
+          id: string
           title: string | null
-          url: string
+          url: string | null
           user_id: string | null
         }
         Insert: {
           audio_path?: string | null
-          created_at?: string | null
-          id?: number
+          created_at?: string
+          id?: string
           title?: string | null
-          url: string
+          url?: string | null
           user_id?: string | null
         }
         Update: {
           audio_path?: string | null
-          created_at?: string | null
-          id?: number
+          created_at?: string
+          id?: string
           title?: string | null
-          url?: string
+          url?: string | null
           user_id?: string | null
         }
         Relationships: [

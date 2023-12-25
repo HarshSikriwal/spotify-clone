@@ -1,14 +1,16 @@
 import getSongs from "@/actions/getSongs";
 import Header from "@/components/Header";
 import ListItem from "@/components/ListItem";
-import PageContent from "./components/PageContent";
+import SongContent from "./components/SongContent";
+import getArticles from "@/actions/getArticles";
+import ArticlesContent from "./components/ArticlesContent";
 
 export const revalidate = 0;
 
 export default async function Home() {
   const songs = await getSongs();
+  const articles = await getArticles();
 
-  // throw new Error("Test");
   return (
     <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
       <Header>
@@ -29,10 +31,24 @@ export default async function Home() {
         </div>
       </Header>
       <div className="mt-2 mb-7 px-6">
-        <div className="flex justiy-between items-center">
-          <h1 className="text-white text-2xl font-semibold">Newest Songs</h1>
+        <div className="flex flex-col gap-4">
+          <div>
+            <div className="flex justify-between items-center">
+              <h1 className="text-white text-2xl font-semibold">
+                Newest Songs
+              </h1>
+            </div>
+            <SongContent songs={songs} />
+          </div>
+          <div>
+            <div className="flex justify-between items-center">
+              <h1 className="text-white text-2xl font-semibold">
+                Newest Articles
+              </h1>
+            </div>
+            <ArticlesContent articles={articles} />
+          </div>
         </div>
-        <PageContent songs={songs} />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Modal from "./Modal";
 import useCommentModal from "@/hooks/useCommentModal";
 import usePlayer from "@/hooks/usePlayer";
-import useGetSongById from "@/hooks/useGetSongById";
+import useGetAudioById from "@/hooks/useGetAudioById";
 import useGetCommentsById from "@/hooks/useGetCommentsById";
 import AddComment from "./AddComment";
 import { useUser } from "@/hooks/useUser";
@@ -10,7 +10,7 @@ import { useUser } from "@/hooks/useUser";
 const CommentModal = () => {
   const player = usePlayer();
   const user = useUser();
-  const { song } = useGetSongById(player.activeId);
+  const { audio } = useGetAudioById("song", player.activeId);
   const { comments, fetchComments } = useGetCommentsById(player.activeId);
   const { onClose, isOpen } = useCommentModal();
   const onChange = (open: boolean) => {
@@ -49,7 +49,7 @@ const CommentModal = () => {
 
   return (
     <Modal
-      title={`Comments on ${song?.title}`}
+      title={`Comments on ${audio?.title}`}
       description={`${comments?.length} comments`}
       isOpen={isOpen}
       onChange={onChange}

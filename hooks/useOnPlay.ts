@@ -1,20 +1,12 @@
-import { Song } from "@/types";
+import { Article, Song } from "@/types";
 import usePlayer from "./usePlayer";
-import useAuthModal from "./useAuthModal";
-import { useUser } from "./useUser";
 
-const useOnPlay = (songs: Song[]) => {
+const useOnPlay = (audios: Song[] | Article[]) => {
   const player = usePlayer();
-  const authModal = useAuthModal();
-  const { user } = useUser();
-
-  const onPlay = (id: string) => {
-    // if (!user) {
-    //   return authModal.onOpen();
-    // }
-
+  const onPlay = (id: string, type: "song" | "article") => {
+    player.setType(type);
     player.setId(id);
-    player.setIds(songs.map((song) => song.id));
+    player.setIds(audios.map((audio) => audio.id));
   };
   return onPlay;
 };

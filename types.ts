@@ -8,10 +8,10 @@ export interface Song {
   song_path: string;
   image_path: string;
 }
-export interface Audio {
-  audio_path: string | null;
+export interface Article {
+  audio_path: string;
   created_at: string | null;
-  id: number;
+  id: string;
   title: string | null;
   url: string;
   user_id: string | null;
