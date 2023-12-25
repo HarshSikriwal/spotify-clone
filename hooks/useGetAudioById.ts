@@ -7,7 +7,7 @@ const useGetAudioById = (type: "song" | "article", id?: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const [audio, setAudio] = useState<Song | Article | undefined>(undefined);
   const { supabaseClient } = useSessionContext();
-  console.log(type, "audiobyid");
+  console.log("audioById", type);
   useEffect(() => {
     if (!id) {
       return;
