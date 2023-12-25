@@ -9,18 +9,19 @@ const getArticleDetails = async (url: string) => {
   console.log(res, "res");
   const html = await res.text();
   const parser = new DOMParser();
-  console.log(html, "html");
+
   const doc = parser.parseFromString(html, "text/html");
-  console.log(doc);
+  const title = doc.head.getElementsByTagName("title").item(0)?.textContent;
+  console.log(title, "title");
   let text = "";
   const pTags = Array.from(doc.body.getElementsByTagName("p"));
-  console.log(pTags);
+
   const children = [];
   for (let ptag of pTags) {
     text += extractText(ptag);
     children.push(ptag);
   }
-  return text;
+  return { title, text };
 };
 
 function extractText(node: HTMLElement) {
@@ -34,5 +35,20 @@ function extractText(node: HTMLElement) {
   }
   return text;
 }
+
+export const generateAudio = async (text: string) => {
+  if (!text) return;
+  try {
+    const response = await fetch("/tts", {
+      method: "POST",
+      body: text,
+    });
+    const blob = await response.blob();
+    return blob;
+  } catch (error) {
+    console.error("Error generating audio:", error);
+    return new Error("Error generating audio");
+  }
+};
 
 export default getArticleDetails;

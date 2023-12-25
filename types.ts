@@ -8,7 +8,14 @@ export interface Song {
   song_path: string;
   image_path: string;
 }
-
+export interface Audio {
+  audio_path: string | null;
+  created_at: string | null;
+  id: number;
+  title: string | null;
+  url: string;
+  user_id: string | null;
+}
 export interface Comment {
   id: string;
   user_id: string;

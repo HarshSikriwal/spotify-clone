@@ -9,6 +9,41 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      articles: {
+        Row: {
+          audio_path: string | null
+          created_at: string | null
+          id: number
+          title: string | null
+          url: string
+          user_id: string | null
+        }
+        Insert: {
+          audio_path?: string | null
+          created_at?: string | null
+          id?: number
+          title?: string | null
+          url: string
+          user_id?: string | null
+        }
+        Update: {
+          audio_path?: string | null
+          created_at?: string | null
+          id?: number
+          title?: string | null
+          url?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "articles_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       comments: {
         Row: {
           content: string | null
