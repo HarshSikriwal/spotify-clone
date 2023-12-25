@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import ListItem from "@/components/ListItem";
 import SongContent from "./components/SongContent";
 import getArticles from "@/actions/getArticles";
-import ArticlesContent from "./components/ArticlesContent";
+import ArticlesContent from "../../components/ArticlesContent";
 
 export const revalidate = 0;
 

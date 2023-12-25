@@ -3,8 +3,15 @@ import Image from "next/image";
 import React from "react";
 
 import UploadArticle from "./components/UploadArticle";
+import getArticlesByUserId from "@/actions/getArticlesByUserId";
+import ArticleItem from "@/components/ArticleItem";
+import useOnPlay from "@/hooks/useOnPlay";
+import ArticlesContent from "@/components/ArticlesContent";
+
+export const revalidate = 0;
 
 const Articles = async () => {
+  const userArticles = await getArticlesByUserId();
   return (
     <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
       <Header>
@@ -32,6 +39,9 @@ const Articles = async () => {
           </div>
         </div>
       </Header>
+      <div className="mt-10 px-6">
+        <ArticlesContent articles={userArticles} />
+      </div>
     </div>
   );
 };
