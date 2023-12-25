@@ -74,7 +74,7 @@ const ArticleUploadModal = () => {
   return (
     <Modal
       title="Add an Article link"
-      description="Add any article whose audio you needed"
+      description="Add a link to any article on the web to listen using AI generated voice"
       isOpen={isOpen}
       onChange={onChange}
     >
