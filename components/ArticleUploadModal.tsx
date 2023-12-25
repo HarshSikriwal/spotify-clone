@@ -8,9 +8,11 @@ import getArticleDetails, { generateAudio } from "@/actions/getArticleDetails";
 import toast from "react-hot-toast";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useUser } from "@/hooks/useUser";
+import { useRouter } from "next/navigation";
 
 const ArticleUploadModal = () => {
   const { user } = useUser();
+  const router = useRouter();
   const supabaseClient = useSupabaseClient();
   const [isLoading, setIsLoading] = useState(false);
   const { isOpen, onClose } = useArticleUploadModal();
@@ -69,7 +71,10 @@ const ArticleUploadModal = () => {
       setIsLoading(false);
       return toast.error(tableError.message);
     }
+    router.refresh();
     setIsLoading(false);
+    toast.success("Audio Genereated");
+    onClose();
   };
   return (
     <Modal

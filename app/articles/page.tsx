@@ -5,8 +5,6 @@ import getArticlesByUserId from "@/actions/getArticlesByUserId";
 import ArticlesContent from "@/components/ArticlesContent";
 import UploadArticle from "./components/UploadArticle";
 
-export const revalidate = 0;
-
 const Articles = async () => {
   const userArticles = await getArticlesByUserId();
   return (
