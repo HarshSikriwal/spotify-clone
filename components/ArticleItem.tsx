@@ -5,6 +5,7 @@ import { Article, Song } from "@/types";
 import Image from "next/image";
 import PlayButton from "./PlayButton";
 import Link from "next/link";
+import Button from "./Button";
 
 interface SongItemProps {
   data: Article;
@@ -27,7 +28,10 @@ const ArticleItem: React.FC<SongItemProps> = ({ data, onClick }) => {
       </div>
       <div className="flex flex-col items-start w-full pt-4 gap-y-1">
         <p className="font-semibold truncate w-full">{data.title}</p>
-        <Link href={data.url}>Article Link</Link>
+
+        <Link href={data.url} target="_blank">
+          <Button className="py-1 text-sm">Article Link</Button>
+        </Link>
       </div>
       <div className="absolute bottom-24 right-5">
         <PlayButton />
