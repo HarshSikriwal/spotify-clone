@@ -2,17 +2,12 @@ import { Article, Song } from "@/types";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useState, useEffect, useMemo } from "react";
 import toast from "react-hot-toast";
-import useSongsAndArticles from "./useSongsAndArticles";
 
 const useGetAudioById = (type: "song" | "article", id?: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const [audio, setAudio] = useState<Song | Article | undefined>(undefined);
-  const songsAndArticles = useSongsAndArticles();
 
   const { supabaseClient } = useSessionContext();
-  console.log("audioById", id);
-  console.log("songs", songsAndArticles.songs);
-  console.log("articles", songsAndArticles.articles);
 
   useEffect(() => {
     if (!id) {
@@ -20,56 +15,39 @@ const useGetAudioById = (type: "song" | "article", id?: string) => {
     }
 
     setIsLoading(true);
-    const fetchSong = async () => {
+
+    const fetchSongOrArticle = async () => {
       const { data, error } = await supabaseClient
         .from("songs")
         .select("*")
         .eq("id", id)
         .single();
 
-      if (error) {
+      if (data) {
+        setAudio(data as Song);
         setIsLoading(false);
-        return toast.error(error.message);
+        return;
       }
 
-      setAudio(data as Song);
-      setIsLoading(false);
-    };
-    const fetchArticle = async () => {
-      const { data, error } = await supabaseClient
+      const { data: audioData, error: audioError } = await supabaseClient
         .from("articles")
         .select("*")
         .eq("id", id)
         .single();
 
-      if (error) {
+      if (audioData) {
+        setAudio(audioData as Article);
         setIsLoading(false);
-        return toast.error(error.message);
       }
-
-      setAudio(data as Article);
-      setIsLoading(false);
+      if (audioError) {
+        toast.error("Could not load song or article");
+      }
     };
-    console.log(type);
-    if (songsAndArticles.songs.find((s) => s.id === id)) {
-      console.log("fetching song");
-      fetchSong();
-    } else {
-      console.log("fetching article");
 
-      fetchArticle();
-    }
+    fetchSongOrArticle();
   }, [id, supabaseClient]);
 
   return { isLoading, audio };
-  // return useMemo(
-  //   () => ({
-  //     isLoading,
-  //     audio,
-  //     type,
-  //   }),
-  //   [isLoading, audio, type]
-  // );
 };
 
 export default useGetAudioById;

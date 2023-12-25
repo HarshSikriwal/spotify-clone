@@ -2,9 +2,8 @@
 
 import ArticleItem from "@/components/ArticleItem";
 import useOnPlay from "@/hooks/useOnPlay";
-import useSongsAndArticles from "@/hooks/useSongsAndArticles";
+
 import { Article } from "@/types";
-import { useEffect } from "react";
 
 interface ArticlesContentProps {
   articles: Article[];
@@ -12,12 +11,6 @@ interface ArticlesContentProps {
 
 const ArticlesContent: React.FC<ArticlesContentProps> = ({ articles }) => {
   const onPlay = useOnPlay(articles);
-  const songsAndArticles = useSongsAndArticles();
-  useEffect(() => {
-    if (songsAndArticles && songsAndArticles.setArticles) {
-      songsAndArticles.setArticles(articles);
-    }
-  }, []);
 
   if (articles.length === 0) {
     return <div className="mt-4 text-neutral-400">No Articles available.</div>;
