@@ -1,11 +1,10 @@
 import Header from "@/components/Header";
 import Image from "next/image";
 import React from "react";
-import { AiOutlinePlus } from "react-icons/ai";
+
 import UploadArticle from "./components/UploadArticle";
 
 const Articles = async () => {
-  const onClick = () => {};
   return (
     <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
       <Header>

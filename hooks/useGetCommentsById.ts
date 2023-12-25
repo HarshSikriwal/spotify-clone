@@ -20,7 +20,6 @@ const useGetCommentsById = (id?: string) => {
     }
     setComments(data);
     setIsLoading(false);
-    console.log(comments);
   };
   useEffect(() => {
     if (!id) {
