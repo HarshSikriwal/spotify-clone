@@ -1,12 +1,9 @@
 import Header from "@/components/Header";
 import Image from "next/image";
-import React from "react";
 
-import UploadArticle from "./components/UploadArticle";
 import getArticlesByUserId from "@/actions/getArticlesByUserId";
-import ArticleItem from "@/components/ArticleItem";
-import useOnPlay from "@/hooks/useOnPlay";
 import ArticlesContent from "@/components/ArticlesContent";
+import UploadArticle from "./components/UploadArticle";
 
 export const revalidate = 0;
 
