@@ -17,7 +17,7 @@ const AddComment = ({
   loggedIn: boolean;
 }) => {
   const player = usePlayer();
-  const { song } = useGetAudioById(player.activeId);
+  const { audio } = useGetAudioById("song", player.activeId);
   const [isLoading, setIsLoading] = useState(false);
   const [value, setValue] = useState<string>("");
   const { user } = useUser();
@@ -33,7 +33,7 @@ const AddComment = ({
           .insert({
             user_id: user?.id,
             content: value,
-            song_id: song?.id,
+            song_id: audio?.id,
             user_email: user?.email,
           });
         if (supabaseError) {
