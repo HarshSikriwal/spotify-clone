@@ -12,14 +12,12 @@ const getArticleDetails = async (url: string) => {
 
   const doc = parser.parseFromString(html, "text/html");
   const title = doc.head.getElementsByTagName("title").item(0)?.textContent;
-  console.log(title, "title");
+
   let text = "";
   const pTags = Array.from(doc.body.getElementsByTagName("p"));
 
-  const children = [];
   for (let ptag of pTags) {
     text += extractText(ptag);
-    children.push(ptag);
   }
   return { title, text };
 };

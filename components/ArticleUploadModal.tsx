@@ -34,7 +34,7 @@ const ArticleUploadModal = () => {
       return;
     }
     if (blob === undefined) {
-      toast.error("Somethin went wrong");
+      toast.error("Something went wrong");
       setIsLoading(false);
       return;
     }
