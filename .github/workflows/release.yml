@@ -1,19 +1,21 @@
 name: test
 on:
-    push:
-        branches: main
+  push:
+    branches:
+      # Change this if your primary branch is not main
+      - main
 
 jobs:
-    main:
-        runs-on: ubuntu-latest
-        environment:
-            name: production
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-              with:
-                  persist-credentials: false
-            - name: Semantic Release
-              uses: cycjimmy/semantic-release-action@v4
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  main:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
