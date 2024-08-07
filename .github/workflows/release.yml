@@ -3,7 +3,7 @@ on:
     push:
         branches:
             # Change this if your primary branch is not main
-            -main
+            - main
 
 jobs:
     main:
@@ -18,4 +18,4 @@ jobs:
             - name: Semantic Release
               uses: cycjimmy/semantic-release-action@v4
               env:
-                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
